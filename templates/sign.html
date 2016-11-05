@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Sign in</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='furtive/css/furtive.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='animate/css/animate.css') }}">
+	<style>
+		img {
+			max-width: 128px;
+			height: auto;
+		}
+	</style>
+</head>
+
+<body class="slideInDown animated">
+	<div class="app">
+		<div>
+		<div class="txt--center">
+			<img src="{{ url_for('static', filename='images/logo.png') }}" alt="">
+		</div>
+	</div>
+	<div class="px2">
+		<section class="measure p2" id="forms">
+			<h3>Sign Up</h3>
+			<hr>
+			<form action="/signup" method="POST" role="form" class="my2 fadeIn animated">
+				<label for="email">Email</label>
+				<input type="email" name="email" placeholder="user@example.com">
+				<label for="password">Password</label>
+				<br>
+				<input type="password" name="password" placeholder="8 characters or more...">
+				<input type="submit" value="Create Account" class="btn--blue">
+			</form>
+			<a href="/">sign in</a>
+		</section>
+	</div>
+	</div>
+
+</body>
+
+</html>
