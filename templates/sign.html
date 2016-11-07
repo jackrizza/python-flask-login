@@ -3,6 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<title>Sign in</title>
 	<link rel="stylesheet" href="{{ url_for('static', filename='furtive/css/furtive.min.css') }}">
 	<link rel="stylesheet" href="{{ url_for('static', filename='animate/css/animate.css') }}">
@@ -11,33 +12,78 @@
 			max-width: 128px;
 			height: auto;
 		}
+		
+		.alert {
+			opacity: 1;
+			transition: opacity 0.1s ease-in;
+			-webkit-transition: opacity 0.1s ease-in;
+			-moz-transition: opacity 0.1s ease-in;
+			-o-transition: opacity 0.1s ease-in;
+			-webkit-box-shadow: 3px 3px 35px -4px rgba(0,0,0,0.75);
+			-moz-box-shadow: 3px 3px 35px -4px rgba(0,0,0,0.75);
+			box-shadow: 3px 3px 35px -4px rgba(0,0,0,0.75);
+			color : white !important;
+			padding : 6px;
+			display : flex;
+			justify-content: space-between;
+		}
+		.alert a {
+			text-decoration : none !important;
+			color : white !important;
+			padding : 4px;
+		}
+		
+		.alert.close {
+			opacity: 0;
+		}
+		
+		.alert-warning {
+			border-color: #2792d9;
+    		background-color: #3498db;
+			border-radius: 3px;
+			opacity: 0.9;
+		}
+		.alert-warning:hover {
+			color: #fff;
+			background-color: #217dbb;
+		}
 	</style>
 </head>
 
 <body class="slideInDown animated">
 	<div class="app">
 		<div>
-		<div class="txt--center">
-			<img src="{{ url_for('static', filename='images/logo.png') }}" alt="">
+			<div class="txt--center">
+				<img src="{{ url_for('static', filename='images/logo.png') }}" alt="">
+			</div>
 		</div>
-	</div>
-	<div class="px2">
-		<section class="measure p2" id="forms">
-			<h3>Sign Up</h3>
-			<hr>
-			<form action="/signup" method="POST" role="form" class="my2 fadeIn animated">
-				<label for="email">Email</label>
-				<input type="email" name="email" placeholder="user@example.com">
-				<label for="password">Password</label>
-				<br>
-				<input type="password" name="password" placeholder="8 characters or more...">
-				<input type="submit" value="Create Account" class="btn--blue">
-			</form>
-			<a href="/">sign in</a>
-		</section>
-	</div>
+		<div class="px2">
+			<section class="measure p2" id="forms">
+				<h3>Sign Up</h3>
+				{%if error == "already"%}
+				<div class="alert alert-warning">
+					<a href="/">The email already exsists. Try signing in</a>
+					<a class="close" href="#">&times;</a>
+				</div>
+				{%endif%}
+				<form action="/signup/update" method="POST" role="form" class="my2 fadeIn animated">
+					<label for="email">Email</label>
+					<input type="email" name="email" placeholder="user@example.com">
+					<label for="password">Password</label>
+					<br>
+					<input type="password" name="password" placeholder="8 characters or more...">
+					<input type="submit" value="Create Account" class="btn--blue">
+				</form>
+				<p>Already have a account? <a href="/">sign in</a></p>
+			</section>
+		</div>
 	</div>
 
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="{{ url_for('static', filename='js/alert.js') }}"></script>
+<script>
+	  $('.alert').alert();
+</script>
 
 </html>

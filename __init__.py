@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, Response, redirect
 from password import Password
 
-pwd = Password()
+account = Password()
 
 app = Flask(__name__)
 
@@ -10,7 +10,7 @@ def hello():
         if request.method  == 'POST' :
                 email = request.form['email']
                 password = request.form['password']
-                isAccount = pwd.verifyAccount(email, password)
+                isAccount = account.verifyAccount(email, password)
                 if isAccount :
                          return redirect("/woohoo", code=302)
                 else :
@@ -19,21 +19,18 @@ def hello():
         elif request.method  == 'GET' :
                 return render_template('index.html')
 
-@app.route("/signup", methods=['GET','POST'])
-def sign():
+@app.route("/signup/<error>", methods=['GET','POST'])
+def sign(error=None):
         if request.method  == 'POST' :
                 email = request.form['email']
                 password = request.form['password']
-                newAccount = pwd.setUser(email, password)
+                newAccount = account.setUser(email, password)
                 if newAccount :
                         return redirect("/", code=302)
                 else :
-                        return redirect("/error", code=302)
+                        return redirect("/signup/already", code=302)
         elif request.method  == 'GET' :
-                return render_template('sign.html')
-@app.route("/error", methods=['GET','POST'])
-def error():
-        return 'user already exists'
+                return render_template('sign.html', error=error)
 
 if __name__ == "__main__":
     app.run()

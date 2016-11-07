@@ -3,6 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<title>Sign in</title>
 	<link rel="stylesheet" href="{{ url_for('static', filename='furtive/css/furtive.min.css') }}">
 	<link rel="stylesheet" href="{{ url_for('static', filename='animate/css/animate.css') }}">
@@ -24,7 +25,12 @@
 		<div class="px2">
 			<section class="measure p2" id="forms">
 				<h3>Sign In</h3>
-				<hr>
+				{%if error == 1%}
+				<div class="alert alert-warning">
+					<a href="#">email or password was wrong</a>
+					<a class="close" href="#">&times;</a>
+				</div>
+				{%endif%}
 				<form action="/" method="POST" role="form" class="my2 fadeIn animated">
 					<label for="email">Email</label>
 					<input type="email" name="email" placeholder="user@example.com">
@@ -33,7 +39,7 @@
 					<input type="password" name="password" placeholder="8 characters or more...">
 					<input type="submit" value="Sign In" class="btn--blue">
 				</form>
-				<a href="/signup">sign up</a>
+				<p>Don't have a account yet? <a href="/signup/hello">sign up</a></p>
 			</section>
 		</div>
 	</div>
