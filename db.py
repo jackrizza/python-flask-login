@@ -56,6 +56,16 @@ class DB (object):
         def setAccount (self, email, password, salt, pepper) :
                 r.set('user:' + email, password)
                 self.setHash(email, salt, pepper)
+        """
+        set pin for two factor
+        """
+        def setPin (self, email, pin) :
+                r.set('phone:' + email, pin)
+        """
+        get pin for two factor
+        """
+        def getPin (self, email) :
+                return r.get('phone:' + email)
 
         """
         initilize a new user

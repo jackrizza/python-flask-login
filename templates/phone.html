@@ -59,22 +59,13 @@
 		</div>
 		<div class="px2">
 			<section class="measure p2" id="forms">
-				<h3>Sign Up</h3>
-				{%if error == "already"%}
-				<div class="alert alert-warning">
-					<a href="/">The email already exsists. Try signing in</a>
-					<a class="close" href="#">&times;</a>
-				</div>
-				{%endif%}
-				<form action="/signup/1" method="POST" role="form" class="my2 fadeIn animated">
-					<label for="email">Email</label>
-					<input type="email" name="email" placeholder="user@example.com">
-					<label for="password">Password</label>
-					<br>
-					<input type="password" name="password" placeholder="8 characters or more...">
-					<input type="submit" value="Create Account" class="btn--blue">
+				<h3>Set up phone number</h3>
+
+				<form action="/signup/2" method="POST" role="form" class="my2 fadeIn animated">
+					<label for="phone">Phone</label>
+					<input type="phone" name="phone" placeholder="617 222 5653">
+					<input type="submit" value="Verify Number" class="btn--blue">
 				</form>
-				<p>Already have a account? <a href="/">sign in</a></p>
 			</section>
 		</div>
 	</div>
